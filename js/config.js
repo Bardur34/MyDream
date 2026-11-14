@@ -25,7 +25,7 @@ export const FAV_TAG = '__fav__';
 // Всё, что сайт хранит в браузере, лежит под префиксом. Хранилище общее для всех сайтов
 // с тем же адресом (имя.github.io), поэтому при выходе удаляются только ключи с этими префиксами.
 export const STORAGE_PREFIX = 'mydream:';
-export const STORAGE_KEYS = { draft: `${STORAGE_PREFIX}diary_draft` };
+export const STORAGE_KEYS = { draft: `${STORAGE_PREFIX}diary_draft`, profile: `${STORAGE_PREFIX}profile` };
 // Сюда клиент Supabase сохраняет вход (под нашим префиксом, поэтому выход очищает и его)
 export const AUTH_STORAGE_KEY = `${STORAGE_PREFIX}auth`;
 // Ключи, которые клиент Supabase может создать сам (sb-<проект>-...) — тоже наши
@@ -42,3 +42,8 @@ const SITE_ROOT = new URL('../', import.meta.url);
 export const VISIT_URL = new URL('visit/', SITE_ROOT).href;
 export const NOTES_URL = new URL('notes/', SITE_ROOT).href;
 export const SETTINGS_URL = new URL('notes/settings/', SITE_ROOT).href;
+
+// ---- Визитка ----
+export const PROFILE_TABLE = 'site_profile';      // одна строка с настройками визитки (см. supabase/site_profile.sql)
+export const AVATAR_BUCKET = 'site_public';       // ПУБЛИЧНЫЙ бакет: аватарку видят все посетители
+export const AVATAR_MAX_BYTES = 5 * 1024 * 1024;
