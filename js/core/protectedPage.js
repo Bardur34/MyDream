@@ -38,7 +38,9 @@ function handleAuthError(error) {
 }
 
 // onReady(user) вызывается после успешной проверки, когда страница уже показана; user = { id, email }
-export async function startProtectedPage(onReady) {
+// options.beforeShow(user) — необязательно: выполняется после проверки, но ДО показа страницы
+// (например, применить оформление, чтобы не было вспышки другого цвета)
+export async function startProtectedPage(onReady, { beforeShow } = {}) {
   // Вернулись кнопкой «Назад» на страницу из кэша браузера, а вход уже сброшен — дневник не показываем
   window.addEventListener('pageshow', (event) => {
     if (event.persisted && !hasSavedSession()) goToVisit();
@@ -55,6 +57,10 @@ export async function startProtectedPage(onReady) {
   } catch (error) {
     handleAuthError(error);
     return;
+  }
+
+  if (beforeShow) {
+    try { await beforeShow(user); } catch (error) { console.error(error); }
   }
 
   hide('appLoader');

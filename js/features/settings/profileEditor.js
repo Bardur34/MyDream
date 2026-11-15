@@ -239,5 +239,10 @@ export const actions = {
   removeLink: (el) => { draft.links.splice(Number(el.dataset.index), 1); renderLinks(); updatePreview(); },
   moveLinkUp: (el) => moveLink(Number(el.dataset.index), -1),
   moveLinkDown: (el) => moveLink(Number(el.dataset.index), 1),
+  resetTheme: () => {
+    draft.theme = { ...DEFAULT_THEME };
+    fillForm();
+    say('profileMessage', 'Цвета сброшены. Нажмите «Сохранить визитку».', 'text-slate-400');
+  },
   saveProfile: () => save(),
 };

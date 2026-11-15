@@ -13,15 +13,16 @@ export const FONTS = {
   caveat:     { label: 'Caveat (рукописный)',  css: "'Caveat', cursive",         google: 'Caveat:wght@400;700' },
 };
 
+// Цвета по умолчанию совпадают с палитрой дневника, поэтому с ними дневник выглядит как раньше.
 // theme — всё оформление одним блоком: новые настройки (шаблоны, градиент, анимации кнопок)
 // добавляются сюда без изменения таблицы в базе
 export const DEFAULT_THEME = {
   template: 'classic',
-  bg: '#020617',
-  text: '#e2e8f0',
-  buttonBg: '#0f172a',
-  buttonText: '#e2e8f0',
-  border: '#334155',
+  bg: '#020617',        // = slate-950
+  text: '#f1f5f9',      // = slate-100
+  buttonBg: '#9333ea',  // = purple-600 (главный цвет кнопок и акцентов)
+  buttonText: '#ffffff',
+  border: '#334155',    // = slate-700
   font: 'system',
 };
 
