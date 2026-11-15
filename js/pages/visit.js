@@ -7,15 +7,15 @@ import { renderProfile } from '../features/profile/profileView.js';
 import { sanitizeProfile, DEFAULT_PROFILE } from '../features/profile/profileModel.js';
 import { fetchProfile, readProfileCache, writeProfileCache } from '../features/profile/profileApi.js';
 
-// Причины, по которым дневник вернул человека на визитку (см. goToVisit в pages/notes.js)
+// Причины, по которым страница заметок вернула человека на визитку (см. goToVisit в pages/notes.js)
 const REASONS = {
   expired: 'Вход устарел. Войдите заново.',
 };
 
 registerActions({
   ...loginActions,
-  // Аватарка: есть сохранённый вход — идём в дневник (он сам перепроверит вход на сервере
-  // и вернёт сюда, если вход недействителен); нет — открываем окно входа.
+  // Аватарка: есть сохранённый вход — идём в заметки (они сами перепроверят вход на сервере
+  // и вернут сюда, если вход недействителен); нет — открываем окно входа.
   onAvatarClick: () => {
     if (hasSavedSession()) location.href = NOTES_URL;
     else openLoginModal();

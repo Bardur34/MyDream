@@ -1,7 +1,7 @@
 import { VISIT_URL } from '../config.js';
 import { hasSavedSession, forgetSession, getVerifiedUser, isNetworkError } from '../services/auth.js';
 
-// Защита страниц дневника (notes/, notes/settings/ и будущих). На странице должны быть блоки:
+// Защита страниц заметок (notes/, notes/settings/ и будущих). На странице должны быть блоки:
 //   #appLoader (с #appLoaderText и ссылкой #appLoaderBack) — виден, пока идёт проверка;
 //   #appRoot — содержимое страницы, скрыто до успешной проверки.
 // Гость и тот, чей вход не прошёл проверку на сервере, отправляется на визитку и ничего не видит.
@@ -41,7 +41,7 @@ function handleAuthError(error) {
 // options.beforeShow(user) — необязательно: выполняется после проверки, но ДО показа страницы
 // (например, применить оформление, чтобы не было вспышки другого цвета)
 export async function startProtectedPage(onReady, { beforeShow } = {}) {
-  // Вернулись кнопкой «Назад» на страницу из кэша браузера, а вход уже сброшен — дневник не показываем
+  // Вернулись кнопкой «Назад» на страницу из кэша браузера, а вход уже сброшен — заметки не показываем
   window.addEventListener('pageshow', (event) => {
     if (event.persisted && !hasSavedSession()) goToVisit();
   });

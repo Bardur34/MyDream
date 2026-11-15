@@ -205,7 +205,7 @@ async def delete_user_message(message: types.Message):
 # Команда /start
 @dp.message(F.text == "/start")
 async def start_cmd(message: types.Message):
-    await message.answer("Привет! Отправь мне текст или фото, и я запишу это в твой личный дневник. 📖")
+    await message.answer("Привет! Отправь мне текст или фото, и я запишу это в твои личные заметки. 📖")
 
 
 # 1. Обработка обычного текста

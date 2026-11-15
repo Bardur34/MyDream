@@ -25,14 +25,17 @@ export const FAV_TAG = '__fav__';
 // Всё, что сайт хранит в браузере, лежит под префиксом. Хранилище общее для всех сайтов
 // с тем же адресом (имя.github.io), поэтому при выходе удаляются только ключи с этими префиксами.
 export const STORAGE_PREFIX = 'mydream:';
-export const STORAGE_KEYS = { draft: `${STORAGE_PREFIX}diary_draft`, profile: `${STORAGE_PREFIX}profile` };
+export const STORAGE_KEYS = { draft: `${STORAGE_PREFIX}notes_draft`, profile: `${STORAGE_PREFIX}profile` };
 // Сюда клиент Supabase сохраняет вход (под нашим префиксом, поэтому выход очищает и его)
 export const AUTH_STORAGE_KEY = `${STORAGE_PREFIX}auth`;
 // Ключи, которые клиент Supabase может создать сам (sb-<проект>-...) — тоже наши
 const SUPABASE_REF = new URL(SUPABASE_URL).hostname.split('.')[0];
 export const OWN_KEY_PREFIXES = [STORAGE_PREFIX, `sb-${SUPABASE_REF}-`];
 // Названия из прошлой версии сайта (без префикса) — переносятся один раз при первом запуске
-export const LEGACY_KEYS = { diary_draft: STORAGE_KEYS.draft };
+export const LEGACY_KEYS = {
+  [`${STORAGE_PREFIX}diary_draft`]: STORAGE_KEYS.draft,   // прошлое название черновика (с префиксом)
+  diary_draft: STORAGE_KEYS.draft,                         // ещё более раннее название (без префикса)
+};
 // Ключи входа через Telegram из прошлых версий — больше не нужны, при запуске удаляются
 export const OBSOLETE_KEYS = ['tg_user', `${STORAGE_PREFIX}tg_user`];
 

@@ -6,7 +6,7 @@ import { migrateLegacyKeys } from '../services/localStore.js';
 import { initStickyHeader } from '../ui/stickyHeader.js';
 import { initPhotoUrlRefresh } from '../services/photoUrls.js';
 import { fetchProfile, readProfileCache, writeProfileCache } from '../features/profile/profileApi.js';
-import { applyDiaryTheme } from '../features/profile/themePalette.js';
+import { applyNotesTheme } from '../features/profile/themePalette.js';
 import { loadNotes } from '../features/notes/notesController.js';
 
 import { actions as navigationActions } from '../features/navigation.js';
@@ -39,16 +39,16 @@ registerActions({
 migrateLegacyKeys();
 initActionDelegation();
 
-// Цвета из настроек визитки действуют и в дневнике (шрифт — нет).
+// Цвета из настроек визитки действуют и в заметках (шрифт — нет).
 // Копия из браузера применяется сразу, свежая загружается параллельно с проверкой входа.
 const cachedProfile = readProfileCache();
-if (cachedProfile) applyDiaryTheme(cachedProfile.theme);
+if (cachedProfile) applyNotesTheme(cachedProfile.theme);
 
 const freshTheme = fetchProfile()
   .then(profile => {
     if (!profile) return;
     writeProfileCache(profile);
-    applyDiaryTheme(profile.theme);
+    applyNotesTheme(profile.theme);
   })
   .catch(error => console.error(error));
 
@@ -66,6 +66,6 @@ startProtectedPage(async (user) => {
 
   await loadNotes();
 }, {
-  // не показываем дневник, пока не применены актуальные цвета (но ждём не дольше полутора секунд)
+  // не показываем заметки, пока не применены актуальные цвета (но ждём не дольше полутора секунд)
   beforeShow: () => Promise.race([freshTheme, new Promise(resolve => setTimeout(resolve, 1500))]),
 });

@@ -35,7 +35,7 @@ create policy "site_profile: authenticated update"
 on public.site_profile for update to authenticated
 using (id = 1) with check (id = 1);
 
--- Публичный бакет для аватарки (приватный бакет diary_photos с фото дневника не затрагивается).
+-- Публичный бакет для аватарки (приватный бакет diary_photos с фото заметок не затрагивается).
 -- Скачивать файлы из публичного бакета можно без политик; загружать и удалять — только вошедшим.
 insert into storage.buckets (id, name, public)
 values ('site_public', 'site_public', true)

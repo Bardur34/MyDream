@@ -25,7 +25,7 @@ function loadSupabaseScript() {
 }
 
 // Клиент Supabase. На визитке скрипт подгружается только когда он нужен (окно входа),
-// на страницах дневника и настроек он уже подключён в HTML.
+// на страницах заметок и настроек он уже подключён в HTML.
 let clientPromise = null;
 export function getAuthClient() {
   if (!clientPromise) {

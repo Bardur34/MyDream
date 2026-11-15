@@ -1,6 +1,6 @@
 import { sanitizeProfile, DEFAULT_THEME } from './profileModel.js';
 
-// Из пяти цветов визитки (фон, текст, кнопки, текст кнопок, рамки) считается вся палитра дневника.
+// Из пяти цветов визитки (фон, текст, кнопки, текст кнопок, рамки) считается вся палитра заметок.
 // Шрифт сюда намеренно не входит: он меняет только визитку.
 
 const toRgb = (hex) => [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16));
@@ -51,8 +51,8 @@ export function buildPalette(theme) {
 }
 
 // Применяет цвета к странице. С цветами по умолчанию переменные убираются совсем,
-// и дневник выглядит ровно так, как задумано в css/theme.css.
-export function applyDiaryTheme(rawTheme) {
+// и заметки выглядят ровно так, как задумано в css/theme.css.
+export function applyNotesTheme(rawTheme) {
   const { theme } = sanitizeProfile({ theme: rawTheme });
   const style = document.documentElement.style;
   const isDefault = COLOR_KEYS.every(key => theme[key] === DEFAULT_THEME[key]);
