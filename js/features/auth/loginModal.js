@@ -39,7 +39,7 @@ function mountTelegramOnce() {
 
 async function onTelegramUser(user) {
   setMessage('');
-  setStatus('Входим через Telegram… Если сервер спал, это может занять до минуты.');
+  setStatus('Входим через Telegram… Если сервер спал, это может занять до пары минут.');
   $('loginSubmit').disabled = true;
   try {
     await loginWithTelegram(user);

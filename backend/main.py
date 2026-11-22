@@ -37,7 +37,7 @@ bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-SECRET_REPLY = "🤫 Я сохраню это в секрете"
+SECRET_REPLY = "Всё записал."
 
 
 # Функция фонового пинга для Render (ровно 72 раза каждые 10 минут)
